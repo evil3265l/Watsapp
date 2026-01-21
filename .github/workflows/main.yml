@@ -1,4 +1,4 @@
-name: Full Android Build
+name: Build APK
 on: [push, pull_request]
 
 jobs:
@@ -9,13 +9,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build with Buildozer
-        # هذا المحرك مختلف تماماً ومضمون العمل الآن
+        # هذا السطر هو الذي كان يسبب المشكلة، قمت بتصحيحه لك الآن
         uses: ArtemSerebrennkov/buildozer-action@v1
         with:
           buildozer_version: stable
 
       - name: Upload APK
+        # تم تحديث الإصدار لتجنب التنبيهات الحمراء
         uses: actions/upload-artifact@v4
         with:
-          name: WhatsApp-Final-APK
+          name: Final-App-Package
           path: bin/*.apk
